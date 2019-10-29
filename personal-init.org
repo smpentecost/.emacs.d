@@ -1,0 +1,69 @@
+* Personal initialization file
+  This is an org file for customizing my emacs configuration but done so that it includes more prose commenting
+** Basic customization
+#+BEGIN_SRC emacs-lisp
+ (load "server")
+ (unless (server-running-p) (server-start))
+
+ (setq inhibit-startup-message t) ;; hide the startup message
+ (global-linum-mode t) ;; enable line numbers globally
+#+END_SRC
+
+** Setup melpa package loads
+#+BEGIN_SRC emacs-lisp
+ (require 'package)
+
+ (add-to-list 'package-archives
+	'("melpa" . "http://melpa.org/packages/") t)
+
+ (package-initialize)
+ (when (not package-archive-contents)
+   (package-refresh-contents))
+
+ (defvar myPackages
+   '(better-defaults
+     ein
+     elpy
+     flycheck
+     py-autopep8))
+
+ (mapc #'(lambda (package)
+     (unless (package-installed-p package)
+       (package-install package)))
+       myPackages)
+#+END_SRC
+
+** Load and require elpomark-mode
+#+BEGIN_SRC emacs-lisp
+ (add-to-list 'load-path "/home/seeley/.emacs.d/elpomark/")
+ (require 'elpomark-mode)
+#+END_SRC
+** Python configuration
+#+BEGIN_SRC emacs-lisp
+ (elpy-enable)
+
+ ;; use flycheck not flymake with elpy
+ (when (require 'flycheck nil t)
+   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+   (add-hook 'elpy-mode-hook 'flycheck-mode))
+
+ (setq elpy-rpc-backend "jedi")
+ (setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
+
+ ;; enable autopep8 formatting on save
+ (require 'py-autopep8)
+ (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+#+END_SRC
+** Test area
+this is a test
+
+#+BEGIN_SRC emacs-lisp
+(setq org-todo-keywords 
+'((sequence "TODO" "STARTED" "CANCELED" "|" "DONE")))
+(setq org-todo-keyword-faces
+'(("TODO" . org-warning) ("STARTED" . "yellow")
+("CANCELED" . (:foreground "blue" :weight bold))))
+#+END_SRC
+
+#+RESULTS:
+: ((TODO . org-warning) (STARTED . yellow) (CANCELED :foreground blue :weight bold))
