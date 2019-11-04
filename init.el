@@ -22,7 +22,7 @@
  '(hl-sexp-background-color "#1c1f26")
  '(org-agenda-files
    (quote
-    ("/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Org/seeley.org" "/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Org/football.org")))
+    ("/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Org/becky.org" "/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Org/seeley.org" "/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Org/football.org")))
  '(org-startup-truncated nil)
  '(package-selected-packages
    (quote
