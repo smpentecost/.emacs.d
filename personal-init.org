@@ -35,8 +35,8 @@
 
 ** Load and require elpomark-mode
 #+BEGIN_SRC emacs-lisp
- (add-to-list 'load-path "/home/seeley/.emacs.d/elpomark/")
- (require 'elpomark-mode)
+; (add-to-list 'load-path "/home/seeley/.emacs.d/elpomark/")
+; (require 'elpomark-mode)
 #+END_SRC
 ** Python configuration
 #+BEGIN_SRC emacs-lisp
