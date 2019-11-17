@@ -3,6 +3,13 @@
 ;; INSTALL PACKAGES
 ;; --------------------------------------
 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (require 'org)
 (org-babel-load-file
  (expand-file-name "personal-init.org"
@@ -22,11 +29,11 @@
  '(hl-sexp-background-color "#1c1f26")
  '(org-agenda-files
    (quote
-    ("/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Org/becky.org" "/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Org/seeley.org" "/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Org/football.org")))
+    ("/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Calendars/becky.org" "/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Calendars/seeley.org" "/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Calendars/football.org")))
  '(org-startup-truncated nil)
  '(package-selected-packages
    (quote
-    (pyenv-mode py-autopep8 flycheck elpy ein better-defaults)))
+    (yaml-mode pyenv-mode py-autopep8 flycheck elpy ein better-defaults)))
  '(python-shell-interpreter "python3")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map

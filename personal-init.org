@@ -8,7 +8,7 @@
  (setq inhibit-startup-message t) ;; hide the startup message
  (global-linum-mode t) ;; enable line numbers globally
 #+END_SRC
-
+	
 ** Setup melpa package loads
 #+BEGIN_SRC emacs-lisp
  (require 'package)
@@ -54,6 +54,16 @@
  (require 'py-autopep8)
  (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 #+END_SRC
+** Abbreviations
+#+BEGIN_SRC emacs-lisp
+(add-to-list 
+`directory-abbrev-alist 
+`("^/aio-net" . "/ssh:smpentecost@server.aio-net.com://")
+)
+#+END_SRC
+
+#+RESULTS:
+
 ** Test area
 this is a test
 
