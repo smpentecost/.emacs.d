@@ -1,5 +1,6 @@
 * Personal initialization file
   This is an org file for customizing my emacs configuration but done so that it includes more prose commenting
+
 ** Basic customization
 #+BEGIN_SRC emacs-lisp
  (load "server")
@@ -9,13 +10,15 @@
  (global-linum-mode t) ;; enable line numbers globally
 #+END_SRC
 	
+
 ** Setup melpa package loads
 #+BEGIN_SRC emacs-lisp
  (require 'package)
 
  (add-to-list 'package-archives
-	'("melpa" . "http://melpa.org/packages/") t)
+	'("melpa" . "https://melpa.org/packages/") t)
 
+ (package-refresh-contents)
  (package-initialize)
  (when (not package-archive-contents)
    (package-refresh-contents))
@@ -25,7 +28,8 @@
      ein
      elpy
      flycheck
-     py-autopep8))
+     py-autopep8
+     auto-complete))
 
  (mapc #'(lambda (package)
      (unless (package-installed-p package)
@@ -33,47 +37,65 @@
        myPackages)
 #+END_SRC
 
+
 ** Load and require elpomark-mode
 #+BEGIN_SRC emacs-lisp
 ; (add-to-list 'load-path "/home/seeley/.emacs.d/elpomark/")
 ; (require 'elpomark-mode)
 #+END_SRC
+
+
 ** Python configuration
 #+BEGIN_SRC emacs-lisp
- (elpy-enable)
+  (setenv "PATH" (concat (getenv "PATH") ":~/.local/bin/"))
+  (setq exec-path (append exec-path '("~/.local/bin/")))
+  (elpy-enable)
 
- ;; use flycheck not flymake with elpy
- (when (require 'flycheck nil t)
-   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-   (add-hook 'elpy-mode-hook 'flycheck-mode))
+  ;; use flycheck not flymake with elpy
+  (when (require 'flycheck nil t)
+    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+    (add-hook 'elpy-mode-hook 'flycheck-mode))
 
- (setq elpy-rpc-backend "jedi")
- (setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
+  (setq elpy-rpc-backend "jedi")
+  (setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
 
- ;; enable autopep8 formatting on save
- (require 'py-autopep8)
- (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
-#+END_SRC
-** Abbreviations
-#+BEGIN_SRC emacs-lisp
-(add-to-list 
-`directory-abbrev-alist 
-`("^/aio-net" . "/ssh:smpentecost@server.aio-net.com://")
-)
+  ;; enable autopep8 formatting on save
+  (require 'py-autopep8)
+  (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 #+END_SRC
 
-#+RESULTS:
 
 ** Test area
-this is a test
-
 #+BEGIN_SRC emacs-lisp
-(setq org-todo-keywords 
-'((sequence "TODO" "STARTED" "CANCELED" "|" "DONE")))
-(setq org-todo-keyword-faces
-'(("TODO" . org-warning) ("STARTED" . "yellow")
-("CANCELED" . (:foreground "blue" :weight bold))))
+  (setq org-todo-keywords 
+	'((sequence "TODO" "STARTED" "CANCELED" "|" "DONE")))
+  (setq org-todo-keyword-faces
+	'(("TODO" . org-warning) ("STARTED" . "yellow")
+	  ("CANCELED" . (:foreground "blue" :weight bold))))
+#+END_SRC
+
+
+** Hugo
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'ox
+    (require 'ox-hugo))
+#+END_SRC
+
+
+** Javascript
+#+BEGIN_SRC emacs-lisp
+;(require 'js2-mode)
+;(require 'auto-complete-config)
+;(require 'ac-js2)
+
+;(ac-config-default)
+;(global-auto-complete-mode t)
+;(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+;(add-to-list 'company-backends 'ac-js2-company)
+
+;(add-hook 'js2-mode-hook 'ac-js2-mode)
+
 #+END_SRC
 
 #+RESULTS:
-: ((TODO . org-warning) (STARTED . yellow) (CANCELED :foreground blue :weight bold))
+| ac-js2-mode |

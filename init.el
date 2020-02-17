@@ -28,13 +28,13 @@
  '(fci-rule-color "#37474f")
  '(global-hl-line-mode t)
  '(hl-sexp-background-color "#1c1f26")
-; '(org-agenda-files
-;   (quote
-;    ("/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Calendars/becky.org" "/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Calendars/seeley.org" "/ssh:smpentecost@server.aio-net.com:/home/smpentecost/Calendars/football.org")))
+ '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t) (python . t))))
+ '(org-babel-python-command "python3")
+ '(org-edit-src-content-indentation 0)
  '(org-startup-truncated nil)
  '(package-selected-packages
    (quote
-    (ox-hugo emacsql-sqlite magit yaml-mode pyenv-mode py-autopep8 flycheck elpy ein better-defaults)))
+    (org ac-js2 company xref-js2 js2-refactor toml-mode ox-hugo emacsql-sqlite magit yaml-mode pyenv-mode py-autopep8 flycheck elpy ein better-defaults)))
  '(python-shell-interpreter "python3")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
