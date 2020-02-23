@@ -6,7 +6,7 @@
  (load "server")
  (unless (server-running-p) (server-start))
 
- (setq inhibit-startup-message t) ;; hide the startup message
+ (setq inhibit-startup-message nil) ;; hide the startup message
  (global-linum-mode t) ;; enable line numbers globally
 #+END_SRC
 	

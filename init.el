@@ -31,6 +31,10 @@
  '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t) (python . t))))
  '(org-babel-python-command "python3")
  '(org-edit-src-content-indentation 0)
+ '(org-hugo-paired-shortcodes "%content")
+ '(org-modules
+   (quote
+    (ol-bbdb ol-bibtex ol-docview ol-eww ol-gnus ol-info ol-irc ol-mhe ol-rmail org-tempo ol-w3m)))
  '(org-startup-truncated nil)
  '(package-selected-packages
    (quote
