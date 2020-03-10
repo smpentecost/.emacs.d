@@ -10,7 +10,6 @@
  (global-linum-mode t) ;; enable line numbers globally
 #+END_SRC
 	
-
 ** Setup melpa package loads
 #+BEGIN_SRC emacs-lisp
  (require 'package)
@@ -37,13 +36,11 @@
        myPackages)
 #+END_SRC
 
-
 ** Load and require elpomark-mode
 #+BEGIN_SRC emacs-lisp
 ; (add-to-list 'load-path "/home/seeley/.emacs.d/elpomark/")
 ; (require 'elpomark-mode)
 #+END_SRC
-
 
 ** Python configuration
 #+BEGIN_SRC emacs-lisp
@@ -64,7 +61,6 @@
   (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 #+END_SRC
 
-
 ** Test area
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords 
@@ -74,13 +70,11 @@
 	  ("CANCELED" . (:foreground "blue" :weight bold))))
 #+END_SRC
 
-
 ** Hugo
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load 'ox
     (require 'ox-hugo))
 #+END_SRC
-
 
 ** Javascript
 #+BEGIN_SRC emacs-lisp
@@ -99,3 +93,43 @@
 
 #+RESULTS:
 | ac-js2-mode |
+
+** Custom Functions
+   #+begin_src emacs-lisp
+   (defun connect-bbq ()
+     (interactive)
+     (dired "/ssh:smpentecost@bbq.aio-net.com:/home/smpentecost"))
+   #+end_src
+** C Styling
+   #+begin_src emacs-lisp
+   (defun c-lineup-arglist-tabs-only (ignored)
+     "Line up argument lists by tabs, not spaces"
+     (let* ((anchor (c-langelem-pos c-syntactic-element))
+	    (column (c-langelem-2nd-pos c-syntactic-element))
+	    (offset (- (1+ column) anchor))
+	    (steps (floor offset c-basic-offset)))
+       (* (max steps 1)
+	  c-basic-offset)))
+
+   (add-hook 'c-mode-common-hook
+	     (lambda ()
+	       ;; Add kernel style
+	       (c-add-style
+		"linux-tabs-only"
+		'("linux" (c-offsets-alist
+			   (arglist-cont-nonempty
+			    c-lineup-gcc-asm-reg
+			    c-lineup-arglist-tabs-only))))))
+
+   (add-hook 'c-mode-hook
+	     (lambda ()
+	       (let ((filename (buffer-file-name)))
+		 ;; Enable kernel mode for the appropriate files
+		 (when (and filename
+			    (string-match (expand-file-name "~/src/linux-trees")
+					  filename))
+		   (setq indent-tabs-mode t)
+		   (setq show-trailing-whitespace t)
+		   (c-set-style "linux-tabs-only")))))
+   #+end_src
+   
